@@ -34,8 +34,8 @@ console.log(x); //1
 
 ```javascript
 console.log(bar); //undefined
-console.log(baz); //undefined /* ReferenceError baz is not difined
-* Las variables declaradas son creadas antes de ejecutar cualquier otro código. Las variables sin declarar no existen hasta que el código que las asigna es ejecutado.*
+console.log(baz); //undefined /* ReferenceError baz is not defined
+/* Las variables declaradas son creadas antes de ejecutar cualquier otro código. Las variables sin declarar no existen hasta que el código que las asigna es ejecutado.*/
 foo(); //'Hola!'
 function foo() { console.log('Hola!'); }
 var bar = 1;
@@ -85,6 +85,7 @@ console.log(pm); //'Franco'
 "4" - 2 //2
 "4px" - 2 //Not a Number
 7 / 0 //Not a Number /* Infinity */
+{}[0] /*  */
 parseInt("09") //9
 5 && 2 //2 *Si A es TRUE -> B
 2 && 5 //5
@@ -131,7 +132,7 @@ function getFood(food) {
 }
 
 getFood(false); //'Meow Mix' *Porque al ser false no entra al if
-/* undefined *??? */
+/* undefined PORQUE AL HACER EL HOISTING la var dentro del if, pisa a la var global, pero no llega a definirse un valor porque no se entra al if*/
 ```
 
 
@@ -156,7 +157,7 @@ console.log(obj.prop.getFullname()); //'Aurelio De Rosa'
 var test = obj.prop.getFullname;
 
 console.log(test()); //'Aurelio De Rosa' 
-/* 'Juan Perez' / undefined ....???*/
+/* 'Juan Perez' PORQUE una variable global no puede acceder a los datos de una variable local*/
 ```
 
 ### Event loop

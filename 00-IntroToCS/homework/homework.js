@@ -2,13 +2,20 @@
 
 function BinarioADecimal(num) {
   // tu codigo aca
-  var array = num.split("").reverse();
+  var sum = 0;
+  for(var i = 0;i<num.length;i++){
+    sum += Math.pow(2,num.length - (i+1))*num[i]; 
+    //num[i] es un string y el math.pow es un numero
+  }
+  return sum;
+
+  /* var array = num.split("").reverse();
   var suma = 0;
   for(var i = 0; i < array.length;i++){
     var x = array[i];
     suma = suma + x*Math.pow(2,i);
   }
-  return suma;
+  return suma; */
   
 /* var suma = 0;
 var e = 0;
@@ -27,7 +34,15 @@ return suma; */
 
 function DecimalABinario(num) {
   // tu codigo aca :
-  var i = 0;
+  var bin = "";
+  while(num > 0){
+    bin = num%2 + bin; 
+    // el numero(num%2) se pasa a string y concatena con el string bin
+    num = Math.floor(num/2);
+  }
+  return bin;
+
+  /* var i = 0;
   var array = [];
   while(num >= 1){
     i++;
@@ -35,7 +50,7 @@ function DecimalABinario(num) {
     array.push(Math.floor(x));
     num = num/2;
   }
-  return array.reverse().join("");
+  return array.reverse().join(""); */
 
   /* var i = 0;
   var array = [];

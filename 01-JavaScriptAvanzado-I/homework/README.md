@@ -10,7 +10,7 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 
 ```javascript
-x = 1; 
+x = 1; //Acá el hoistting no sube nada porque es una variable no declarada, es decir se va a leer directamente como se ve y solo va a funcionar dentro del scope al que pertenezca
 var a = 5; 
 var b = 10; 
 var c = function(a, b, c) {
@@ -33,6 +33,7 @@ console.log(x); //1
 ```
 
 ```javascript
+// H -> foo(), bar
 console.log(bar); //undefined
 console.log(baz); //undefined /* ReferenceError baz is not defined
 /* Las variables declaradas son creadas antes de ejecutar cualquier otro código. Las variables sin declarar no existen hasta que el código que las asigna es ejecutado.*/
@@ -85,16 +86,20 @@ console.log(pm); //'Franco'
 "4" - 2 //2
 "4px" - 2 //Not a Number
 7 / 0 //Not a Number /* Infinity */
-{}[0] /*  */
+{}[0] /*Array [0] Segun el profe simplemente no toma en cuenta el obj del comienzo  */
 parseInt("09") //9
+parseInt("09vndjffe456") //9
 5 && 2 //2 *Si A es TRUE -> B
 2 && 5 //5
 0 && 5 //0 *Si A es FALSE -> A
 5 || 0 //5 *Si A es TRUE -> A (Ni me fijo en B)
 0 || 5 //5 *Si A es FALSE -> B (Depende de B)
-[3]+[3]-[10] /* '3' + '3' - '10' -> '33' - '10' -> 23 */
-3>2>1 //true /* FALSE -> True > 1 *Porque se resuelve de izquierda a derecha*/
-[] == ![] //false /* TRUE ...porque no es ===??? */
+[3]+[3]-[10] /* '3' + '3' - [10] -> '33' - '10' -> 23 */
+3>2>1 //true /* FALSE ...porque True > 1 -> 1 > 1 *Porque se resuelve de izquierda a derecha*/
+[] == ![] //false /* TRUE ...porque
+/* [] == false*/ 
+/* "" == false*/ 
+/* false == false*/ 
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -121,6 +126,8 @@ test(); //undefined 2 *Porque al elevar una variable solo se define su nombre, n
 Y el de este código? :
 
 ```javascript
+//hoisting -> var snack = 'Meow Mix' (Global)
+//hoisting -> var snack = undefined (local)
 var snack = 'Meow Mix';
 
 function getFood(food) {
@@ -132,7 +139,7 @@ function getFood(food) {
 }
 
 getFood(false); //'Meow Mix' *Porque al ser false no entra al if
-/* undefined PORQUE AL HACER EL HOISTING la var dentro del if, pisa a la var global, pero no llega a definirse un valor porque no se entra al if*/
+/* undefined PORQUE en el hoisting se pisa la var snack y con la condición false no entra al if, por lo que no se le asigna otro valor a la var snack*/
 ```
 
 
@@ -157,7 +164,9 @@ console.log(obj.prop.getFullname()); //'Aurelio De Rosa'
 var test = obj.prop.getFullname;
 
 console.log(test()); //'Aurelio De Rosa' 
-/* 'Juan Perez' PORQUE una variable global no puede acceder a los datos de una variable local*/
+/* 'Juan Perez' PORQUE una variable global no puede acceder a los datos de una variable local
+node -> undefined
+THIS va a apuntar siempre al objeto más cercano*/
 ```
 
 ### Event loop

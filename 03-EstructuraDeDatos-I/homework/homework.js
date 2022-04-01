@@ -7,7 +7,7 @@ function nFactorial(n) {
   // devolvé el factorial de n (n!)
   // ej:
   // el factorial de 3 es 6 (3 * 2 * 1)
-  if(n === 1) return 1;
+  if(n === 1 || n === 0) return 1;
   if(n < 0) return 0;
   return n*nFactorial(n-1);
   //nFactorial(3) --> 3*nFactorial(2)
@@ -34,19 +34,35 @@ function nFibonacci(n) {
 // dequeue: Remueve un valor de la queue. Obedece a FIFO y respeta el underflow (devuelve undefined cuando la queue tiene size cero, o sea, cuando no tiene ningún elemento).
 // size: Devuelve el número de elementos que contiene la queue.
 
-function Queue() {
+function Queue (){
   this.queue = [];
-  Queue.prototype.enqueue = function(x) {
-    return this.queue.push(x);
-  };
-  Queue.prototype.dequeue =function() {
-    return this.queue.shift();
-  };
-  Queue.prototype.size = function() {
-    return this.queue.length;
-  }
-
+  Queue.prototype.enqueue = function (x) { 
+    /*Al usar el prototype no gastas espacio de más en la memoria cada vez que se incova el metodo. 
+    Si fuera THIS, agarraria espacio dentro del objeto creado cada vez que se invoque */
+      return this.queue.push(x);
+    };
+  Queue.prototype.dequeue = function () {
+      return this.queue.shift();
+    };
+  Queue.prototype.size = function () {
+      return this.queue.length;
+    };
 }
+/* 
+class Queue {
+  constructor() {
+    this.queue = [];
+    Queue.prototype.enqueue = function (x) {
+      return this.queue.push(x);
+    };
+    Queue.prototype.dequeue = function () {
+      return this.queue.shift();
+    };
+    Queue.prototype.size = function () {
+      return this.queue.length;
+    };
+  }
+} */
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
